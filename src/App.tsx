@@ -17,7 +17,7 @@ const modelNames: Record<string, string> = {
 
 function AppContent() {
   const [currentPage, setCurrentPage] = useState<PageId>('dashboard');
-  const { experimentLog, bestModelType, customers } = useApp();
+  const { experimentLog, bestModelType, customers, dbConnected } = useApp();
 
   const renderPage = () => {
     switch (currentPage) {
@@ -42,6 +42,7 @@ function AppContent() {
         experimentCount={experimentLog.length}
         bestModelName={bestModelType ? modelNames[bestModelType] : null}
         datasetSize={customers.length}
+        dbConnected={dbConnected}
       />
       <main className="flex-1 overflow-x-auto p-6 lg:p-8">
         {renderPage()}

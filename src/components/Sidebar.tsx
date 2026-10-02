@@ -40,12 +40,14 @@ export function Sidebar({
   experimentCount,
   bestModelName,
   datasetSize,
+  dbConnected,
 }: {
   currentPage: PageId;
   onNavigate: (page: PageId) => void;
   experimentCount: number;
   bestModelName: string | null;
   datasetSize: number;
+  dbConnected: boolean;
 }) {
   return (
     <div className="w-64 bg-ink-900 border-r border-ink-700 flex flex-col h-screen sticky top-0">
@@ -101,6 +103,13 @@ export function Sidebar({
         <div className="flex items-center justify-between text-xs">
           <span className="text-ink-500">Experiments</span>
           <span className="text-ink-300 font-mono">{experimentCount}</span>
+        </div>
+        <div className="flex items-center justify-between text-xs pt-2 border-t border-ink-700/50">
+          <span className="text-ink-500">Database</span>
+          <span className={`flex items-center gap-1.5 ${dbConnected ? 'text-emerald-400' : 'text-rose-400'}`}>
+            <span className={`w-1.5 h-1.5 rounded-full ${dbConnected ? 'bg-emerald-400' : 'bg-rose-400'}`} />
+            {dbConnected ? 'Connected' : 'Offline'}
+          </span>
         </div>
       </div>
     </div>
